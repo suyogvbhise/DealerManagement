@@ -1,0 +1,41 @@
+﻿@model DMS.Models.Inventory
+
+@{
+    ViewData["Title"] = "Inventory Details";
+}
+
+<h2>Inventory Details</h2>
+
+<div>
+    <h4>Vehicle Information</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">Registration Number</dt>
+        <dd class="col-sm-10">@Model.RegistrationNumber</dd>
+
+        <dt class="col-sm-2">Registration Date</dt>
+        <dd class="col-sm-10">@Model.RegistrationDate.ToString("yyyy-MM-dd")</dd>
+
+        <dt class="col-sm-2">Vehicle Ownership</dt>
+        <dd class="col-sm-10">@Model.VehicleOwnership</dd>
+
+        <dt class="col-sm-2">Fuel Type</dt>
+        <dd class="col-sm-10">@(Model.FuelType != null ? Model.FuelType.Name : "Not Available")</dd>
+
+        <dt class="col-sm-2">Purchase Location</dt>
+        <dd class="col-sm-10">@(Model.PurchaseLocations != null ? Model.PurchaseLocations.Name : "Not Available")</dd>
+    </dl>
+</div>
+
+<div>
+    <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning">Edit</a>
+    <a asp-action="Index" class="btn btn-secondary">Back to List</a>
+    <a asp-action="DownloadWord" asp-route-id="@Model.Id" class="btn btn-primary">
+        Download as Word
+    </a>
+    <a asp-action="DownloadWord1" asp-route-id="@Model.Id" class="btn btn-primary">
+        Download as Word
+    </a>
+
+
+</div>

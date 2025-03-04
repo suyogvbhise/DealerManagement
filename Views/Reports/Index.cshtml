@@ -1,0 +1,84 @@
+﻿@{
+    ViewData["Title"] = "Reports";
+}
+
+<div class="container mt-4">
+    <h2>Reports Dashboard</h2>
+    <hr />
+
+    <!-- Summary Cards -->
+    <div class="row">
+        <div class="col-md-3">
+            <div class="card bg-primary text-white">
+                <div class="card-body">
+                    <h5>Total PDNs</h5>
+                    <h2>@ViewBag.TotalPDNs</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-success text-white">
+                <div class="card-body">
+                    <h5>Total Inventory</h5>
+                    <h2>@ViewBag.TotalInventory</h2>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-3">
+            <div class="card bg-warning text-white">
+                <div class="card-body">
+                    <h5>Most Common Fuel Type</h5>
+                    <h2>@ViewBag.MostCommonFuelType</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Top Purchase Locations -->
+    <h4 class="mt-4">Top Purchase Locations</h4>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>Location</th>
+                <th>Count</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var location in ViewBag.TopPurchaseLocations)
+            {
+                <tr>
+                    <td>@location.Location</td>
+                    <td>@location.Count</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <!-- Latest PDNs -->
+    <h4 class="mt-4">Latest PDNs</h4>
+    <table class="table table-bordered">
+        <thead class="table-dark">
+            <tr>
+                <th>ID</th>
+                <th>Buyer</th>
+                <th>Contact</th>
+                <th>Registration Number</th>
+                <th>Fuel Type</th>
+                <th>Purchase Location</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var pdn in ViewBag.LatestPDNs)
+            {
+                <tr>
+                    <td>@pdn.Id</td>
+                    <td>@pdn.BuyerName</td>
+                    <td>@pdn.ContactNumber</td>
+                    <td>@pdn.Inventory?.RegistrationNumber</td>
+                    <td>@pdn.Inventory?.FuelType?.Name</td>
+                    <td>@pdn.Inventory?.PurchaseLocations?.Name</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

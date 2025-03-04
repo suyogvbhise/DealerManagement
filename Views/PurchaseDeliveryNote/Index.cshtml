@@ -1,0 +1,60 @@
+﻿    // View: Views/PurchaseDeliveryNote/Index.cshtml
+    @model IEnumerable<DMS.Models.PurchaseDeliveryNote>
+
+    @{
+        ViewData["Title"] = "Purchase Delivery Notes";
+    }
+
+    <h2>Purchase Delivery Notes</h2>
+
+    <!-- Search Filters -->
+    <form method="get" class="mb-3">
+        <div class="row">
+            <div class="col-md-3">
+                <input type="text" name="searchBuyer" class="form-control" placeholder="Search by Buyer Name" value="@Context.Request.Query["searchBuyer"]" />
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="searchContact" class="form-control" placeholder="Search by Contact No." value="@Context.Request.Query["searchContact"]" />
+            </div>
+            <div class="col-md-3">
+                <input type="text" name="searchRegNumber" class="form-control" placeholder="Search by Registration Number" value="@Context.Request.Query["searchRegNumber"]" />
+            </div>
+            <div class="col-md-3">
+                <button type="submit" class="btn btn-primary">Search</button>
+                <a href="@Url.Action("Index")" class="btn btn-secondary">Refresh</a>
+            </div>
+        </div>
+    </form>
+
+    <!-- PDN List -->
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>PDN ID</th>
+                <th>Buyer Name</th>
+                <th>Contact No.</th>
+                <th>Registration Number</th>
+                <th>Fuel Type</th>
+                <th>Purchase Location</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td>@item.BuyerName</td>
+                    <td>@item.ContactNumber</td>
+                    <td>@(item.Inventory != null ? item.Inventory.RegistrationNumber : "N/A")</td>
+                    <td>@(item.Inventory?.FuelType != null ? item.Inventory.FuelType.Name : "N/A")</td>
+                    <td>@(item.Inventory?.PurchaseLocations != null ? item.Inventory.PurchaseLocations.Name : "N/A")</td>
+                    <td>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm">Details</a>
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Delete</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>

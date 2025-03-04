@@ -1,0 +1,16 @@
+﻿@model DMS.Models.FuelType
+
+@{
+    ViewData["Title"] = "Add Fuel Type";
+}
+
+<h2>Add Fuel Type</h2>
+
+<form asp-action="Create">
+    <div class="form-group">
+        <label for="Name">Fuel Type Name</label>
+        <input asp-for="Name" class="form-control" required />
+    </div>
+    <button type="submit" class="btn btn-success mt-2">Save</button>
+    <a asp-action="Index" class="btn btn-secondary mt-2">Back</a>
+</form>

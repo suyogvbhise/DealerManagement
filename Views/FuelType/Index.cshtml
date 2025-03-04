@@ -1,0 +1,24 @@
+﻿@model IEnumerable<DMS.Models.FuelType>
+
+@{
+    ViewData["Title"] = "Fuel Types";
+}
+
+<h2>Fuel Types</h2>
+<a asp-action="Create" class="btn btn-primary">Add New Fuel Type</a>
+
+<table class="table mt-3">
+    <thead>
+        <tr>
+            <th>Fuel Type</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var fuel in Model)
+        {
+            <tr>
+                <td>@fuel.Name</td>
+            </tr>
+        }
+    </tbody>
+</table>
