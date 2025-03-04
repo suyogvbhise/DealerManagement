@@ -13,7 +13,7 @@ builder.Services.AddSwaggerGen(options =>
     {
         Title = "DMS Inventory API",
         Version = "v1",
-        Description = "API for managing inventory in DMS",
+        Description = "API for managing inventory in DMSystems",
     });
 });
 
